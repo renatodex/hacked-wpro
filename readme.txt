@@ -1,3 +1,18 @@
+## hacked-wpro
+
+The original wpro plugin stores bucket name at database.
+This is not ideal for a project with several environments, because if you replicate your production database to QA, you will un-setup the database bucket 
+you setup early at QA.
+
+Instead, this version assumes you have an environment var called AWS_BUCKET, which is loadded at wp-config as $aws_bucket var.
+Heres an example:
+
+```
+$aws_bucket = getenv('AWS_BUCKET');
+```
+
+I believe all AWS configuration should be restricted to Environment instead of being stored on database, but for my usecase, only changing the behavior for Bucket Name already worked for me (since my credential user has access to all my buckets)
+
 === WP Read-Only ===
 
 * Contributors: alfreddatakillen
